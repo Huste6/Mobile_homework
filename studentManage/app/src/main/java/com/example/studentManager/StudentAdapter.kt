@@ -1,4 +1,4 @@
-package com.example.studentManager
+package com.example.studentmanager
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.studentmanagement.R
 
 class StudentAdapter(
-    private val students: MutableList<Student>,
+    private var students: MutableList<Student>,
     private val onItemClick: (Int) -> Unit,
     private val onDeleteClick: (Int) -> Unit
 ) : RecyclerView.Adapter<StudentAdapter.StudentViewHolder>() {
@@ -41,4 +41,10 @@ class StudentAdapter(
     }
 
     override fun getItemCount() = students.size
+
+    fun updateData(newStudents: List<Student>) {
+        students.clear()
+        students.addAll(newStudents)
+        notifyDataSetChanged()
+    }
 }
